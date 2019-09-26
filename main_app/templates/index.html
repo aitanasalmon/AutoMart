@@ -8,7 +8,11 @@
     {% for auto in autos %}
         <p>{{auto.nombre}}</p>
         <p>{{auto.modelo}}</p>
-        <p>${{auto.precio}}</p>
+        {% if auto.precio == 0 %}
+            <p>auto de colección</p>
+        {% else %}
+            <p>${{auto.precio}}</p>
+        {% endif %}
         <p>{{auto.color}}</p>
         <hr/>
     {% endfor %}
