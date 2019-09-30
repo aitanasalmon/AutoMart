@@ -1,23 +1,46 @@
 {% load staticfiles %}
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <title>AutoMart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}" />
-</head>
-<body>
-    <h1>Bienvenido a AutoMart</h1>
-    {% for auto in autos %}
-        <p>{{auto.nombre}}</p>
-        <p>{{auto.modelo}}</p>
-        {% if auto.precio == 0 %}
-            <p>auto de colección</p>
-        {% else %}
-            <p>${{auto.precio}}</p>
-        {% endif %}
-        <p>{{auto.color}}</p>
-        <hr/>
-    {% endfor %}
-</body>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+          <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <strong>Automart</strong>
+            </a>
+          </div>
+        </div>
+      </nav>
+      </header>
+        <main role="main">
+          <div class="container">
+            <div class="row">
+            {% for auto in autos %}
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <img src="{{ auto.img_url }}" class="image_auto" />
+                  <div class="card-body">
+                    <h3>{{ auto.nombre }}</h3>
+                    <p>{{ auto.modelo }}</p>
+                    {% if auto.precio > 0 %}
+                      <p>$ {{ auto.precio }}</p>
+                    {% else %}
+                      <p>De coleccion</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
